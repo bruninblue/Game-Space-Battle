@@ -69,16 +69,15 @@ public class Nave1 {
     }
     
 
-    public void load(){
+    public void loadNave1(){
         ImageIcon imageNave1 = new ImageIcon("recursos\\nave_1.png");
         nave1 = imageNave1.getImage();
 
         this.altura = nave1.getHeight(null);
         this.largura = nave1.getWidth(null);
-    
     }
 
-    public void update(){
+    public void updateNave1(){
         x += dx;
         y += dy;
     }

@@ -7,7 +7,6 @@ public class Tiro {
     private int x, y;
     private int largura, altura;
     private boolean visible;
-
     public static final int ALTURA = 700;
     public static int VELOCIDADE = 2;
 

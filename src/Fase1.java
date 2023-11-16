@@ -25,7 +25,7 @@ public class Fase1 extends JPanel implements ActionListener{
         fundo1 = imageFase1.getImage();
 
         nave1 = new Nave1();
-        nave1.load();
+        nave1.loadNave1();
 
         addKeyListener(new TecladoAdapter());
 
@@ -49,7 +49,7 @@ public class Fase1 extends JPanel implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        nave1.update();
+        nave1.updateNave1();
         List<Tiro> tiros = nave1.getTiros();
         for(int i = 0; i< tiros.size(); i++){
             Tiro tiro = tiros.get(i);
