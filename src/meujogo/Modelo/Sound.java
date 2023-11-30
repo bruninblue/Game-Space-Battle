@@ -11,7 +11,9 @@ public class Sound {
 
     public static final Sound shoot = new Sound("//shoot.wav"); // colocar um arquivo em audio.
 
-    public static final Sound hit = new Sound("//hit.wav"); // colocar som 
+    public static final Sound explosion = new Sound("//explosion.wav"); // colocar som 
+
+    public static final Sound hit = new Sound("//hit.wav");
 
     private Sound(String name){
         try{

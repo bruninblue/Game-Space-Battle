@@ -3,11 +3,14 @@ package meujogo.Modelo;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.awt.event.MouseEvent;
 //import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
@@ -16,8 +19,7 @@ import meujogo.Container;
 
 public class Menu extends JFrame implements ActionListener{
    private boolean isVisivel;
-
-    
+   private Image tela;
 
     public Menu(){
 
@@ -27,6 +29,9 @@ public class Menu extends JFrame implements ActionListener{
         setLocationRelativeTo(null);// centro 
         this.setResizable(false);// ajuste da janela 
         setVisible(true);
+
+        ImageIcon fimJogo = new ImageIcon("res//telainicial.png");
+        tela = fimJogo.getImage();
     
 
         setLayout(null);
@@ -43,6 +48,10 @@ public class Menu extends JFrame implements ActionListener{
 
     public void paint(Graphics p){
 
+        Graphics2D graficos = (Graphics2D) p;
+        
+        graficos.drawImage(tela,0,0, null);
+
         p.setColor(new Color(200,200,200));
         p.fillRect(0,0,1024,728);
 
@@ -54,7 +63,7 @@ public class Menu extends JFrame implements ActionListener{
         p.setColor(new Color(0,0,0));
         p.drawString("novo jogo", 100, 200);
         p.drawString("sair", 100, 250);
-        
+        p.dispose();
         
     }
 

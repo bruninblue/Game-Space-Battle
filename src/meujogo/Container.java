@@ -14,8 +14,6 @@ public class Container extends JFrame {
         this.setResizable(false);// ajuste da janela 
         add(new Fase());
         setVisible(true);
-
-        
     }
 
     public static void main(String args[]){

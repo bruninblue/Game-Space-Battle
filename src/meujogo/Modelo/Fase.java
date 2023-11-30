@@ -25,6 +25,7 @@ public class Fase extends JPanel implements ActionListener{
     private List<Enemy1> enemy1;
     private List<Stars> stars;
     private boolean emJogo;
+    private Menu menuJogo;
     
 
     public Fase(){
@@ -48,12 +49,12 @@ public class Fase extends JPanel implements ActionListener{
 
     public void inicializaInimigos(){
 
-        int coordernadas [] = new int[40];
+        int coordernadas [] = new int[80];
         enemy1 = new ArrayList<Enemy1>();
 
         for(int i = 0; i<coordernadas.length; i++){
-            int x = (int) (Math.random() * 8000+1024); // a laargura da tela é 1024, ou seja, a soma é para garantir que o inimigo apareça antes da tela 
-            int y = (int) (Math.random() * 650+60);// garantir que o inimigo não seja criado nem muito baixo nem muito alto, mais baixo será 30. 
+            int x = (int) (Math.random() * 20000+1024); // a laargura da tela é 1024, ou seja, a soma é para garantir que o inimigo apareça antes da tela 
+            int y = (int) (Math.random() * 630+15);// garantir que o inimigo não seja criado nem muito baixo nem muito alto, mais baixo será 30. 
             enemy1.add(new Enemy1(x,y));
         }
     }
@@ -100,9 +101,13 @@ public class Fase extends JPanel implements ActionListener{
             }
 
         }else{
-            ImageIcon fimJogo = new ImageIcon("res\\fimdejogo.png");
-            Image gameOver = fimJogo.getImage();
-            graficos.drawImage(gameOver,-100,0, null);
+            //new Menu();
+            menuJogo.setVisible(true);
+            this.setVisible(false);
+            
+            // ImageIcon fimJogo = new ImageIcon("res\\fimdejogo.png");
+            // Image gameOver = fimJogo.getImage();
+            // graficos.drawImage(gameOver,-100,0, null);
         }
         
         checarColisoes();
@@ -141,12 +146,13 @@ public class Fase extends JPanel implements ActionListener{
             }else{
                 enemy1.remove(o);
                 
-            }
+            } // enquanto o inimigo estiver no cenario ela estará visivel
        }
-       repaint(); // toda vez que houver um movitmento, háverar uma repintagem. 
+       repaint(); // toda vez que houver um movitmento, haverá uma repintagem. 
     }
 
-    
+    // colissão dos objetos -------------
+
     public void checarColisoes(){
         Rectangle formaNave =  player.getBounds();
         Rectangle formaEnemy1;
@@ -156,6 +162,7 @@ public class Fase extends JPanel implements ActionListener{
             Enemy1 tempEnemy1 = enemy1.get(i);
             formaEnemy1 = tempEnemy1.getBounds();
             if(formaNave.intersects(formaEnemy1)){
+                Sound.hit.play();
                 player.dano();
                 tempEnemy1.setVisivel(false);
                 if(player.getLife()==0){
@@ -175,7 +182,7 @@ public class Fase extends JPanel implements ActionListener{
                 Enemy1 tempEnemy1 = enemy1.get(o);
                 formaEnemy1 = tempEnemy1.getBounds();
                 if(formaTiro.intersects(formaEnemy1) ){
-                    Sound.hit.play();
+                    Sound.explosion.play();
                     tempEnemy1.setVisivel(false);
                     tempTiro.setVisivel(false);
                     player.ponto();

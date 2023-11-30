@@ -40,13 +40,32 @@ public class Player {
         largura = imagem.getHeight(null);
     }
 
-    public void update(){ // movimentação 
-        x+=dx;
-        y+=dy;
+    public void update(){ // movimentação
+
+        if(x<861 && x>0 ){ // logica para limitar a movimentação no cenário 
+           this.x+=dx;
+        }else if(x>860){
+            this.x=860;
+        }else if(x<1){
+            this.x=1;
+        }
+
+        if(y<631 && y>0){
+            y+=dy;
+        }else if(y<1){
+            this.y=1;
+        }else if(y>630){
+            this.y=630;
+        }
+
+        // apesar da resolução ser 1024X728, nesse ponto a imagem da nave está para fora no cenário. 
+        // limite da nave em x 0 - 860
+        // limite da nave em y 0 - 630
+        
     }
 
     public void tiroSimples(){
-        this.tiros.add(new Tiro(x+largura, y+(altura/2))); // posicionar o surgimento do tiro
+        this.tiros.add(new Tiro(x+largura+8, y+(altura/2))); // posicionar o surgimento do tiro
     }
     
     public Rectangle getBounds(){
@@ -105,7 +124,7 @@ public class Player {
         im = ref.getImage();
 
         for(int i=0; i<life;i++){
-        a.drawImage(im,1 + (i*20),35,35,19, null);
+            a.drawImage(im,1 + (i*20),35,35,19, null);
         }
     }
 
