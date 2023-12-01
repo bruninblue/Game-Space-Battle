@@ -42,17 +42,17 @@ public class Player {
 
     public void update(){ // movimentação
 
-        if(x<861 && x>0 ){ // logica para limitar a movimentação no cenário 
+        if( x < 861 && x>0 ){ // logica para limitar a movimentação no cenário 
            this.x+=dx;
-        }else if(x>860){
-            this.x=860;
+        }else if(x > 860){
+            this.x = 860;
         }else if(x<1){
-            this.x=1;
+            this.x = 1;
         }
 
-        if(y<631 && y>0){
-            y+=dy;
-        }else if(y<1){
+        if(y < 631 && y > 0){
+            y += dy;
+        } else if ( y < 1 ){
             this.y=1;
         }else if(y>630){
             this.y=630;
@@ -114,8 +114,9 @@ public class Player {
 
     }
 
+    // Rederiza score e life
     public void render(Graphics a){
-
+        
         a.setColor(Color.white);
         a.setFont(new Font("Arial", Font.BOLD,30));
         a.drawString("Score: "+score, 10, 25);
