@@ -1,107 +1,81 @@
 package meujogo.Modelo;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
 
 import meujogo.Container;
 
-public class Menu extends JFrame implements ActionListener{
-   private boolean isVisivel;
-   private Image tela;
+public class Menu extends JFrame {
 
-    public Menu(){
+    private final String URL_BACKGROUND = "res\\arcade.png";
+    private final String URL_BACKGROUND_BUTTON = "res\\start.png";
+    private final String URL_BACKGROUND_BUTTON_SELECTED = "res\\startSelected.png";
 
+    private Botao buttonInicial;
+    private boolean isVisivel;
+
+    public Menu() {
         setTitle("Meu jogo");
-        setSize(1024,728);
+        setSize(1024, 728);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);// centro 
-        this.setResizable(false);// ajuste da janela 
+
+        Fundo fundo = new Fundo(URL_BACKGROUND);
+
+        buttonInicial = new Botao(URL_BACKGROUND_BUTTON, URL_BACKGROUND_BUTTON_SELECTED);
+        buttonInicial.setPreferredSize(new Dimension(100, 100));
+        buttonInicial.setLayout(new BorderLayout(200, 100));
+        buttonInicial.setBounds(400, 500, 200, 100);
+        buttonInicial.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buttonInicialCliecked_handler();
+            }
+        });
+
+        // fundo.add(buttonInicial);
+        setContentPane(fundo);
+        add(buttonInicial);
+
+        // pack();
+        setLocationRelativeTo(null);
         setVisible(true);
-
-        ImageIcon fimJogo = new ImageIcon("res//telainicial.png");
-        tela = fimJogo.getImage();
-    
-
-        setLayout(null);
-        JButton jButton = new JButton("jogar");
-        jButton.setBounds(100,400,280,50);
-        jButton.setFont(new Font("arial", Font.BOLD,15));
-        jButton.setForeground(new Color(237,241,238));
-        jButton.setBackground(new Color(9,10,9));
-        jButton.setVisible(true);
-        add(jButton);
-        jButton.addActionListener(this);
-        //jButton.addMouseListener(this);
     }
 
-    public void paint(Graphics p){
-
-        Graphics2D graficos = (Graphics2D) p;
-        
-        graficos.drawImage(tela,0,0, null);
-
-        p.setColor(new Color(200,200,200));
-        p.fillRect(0,0,1024,728);
-
-        p.setFont(new Font("Arial",Font.BOLD, 50));
-        p.setColor(new Color(0,0,0));
-        p.drawString("Modos de jogo",100,100);
-
-        p.setFont(new Font("Arial",Font.BOLD, 28));
-        p.setColor(new Color(0,0,0));
-        p.drawString("novo jogo", 100, 200);
-        p.drawString("sair", 100, 250);
-        p.dispose();
-        
+    public void buttonInicialCliecked_handler() {
+        new Container();
+        revalidate();
     }
 
+    // public boolean isVisivel() {
+    // return isVisivel;
+    // }
 
-    public boolean isVisivel() {
-        return isVisivel;
-    }
-
-
-    public void setVisivel(boolean isVisivel) {
-        this.isVisivel = isVisivel;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-       new Container();
-       this.setVisible(false);
-        
-    }
-
+    // public void setVisivel(boolean isVisivel) {
+    // this.isVisivel = isVisivel;
+    // }
     // @Override
     // public void mouseClicked(MouseEvent e){
-    //     new Container();
+    // new Container();
     // }
     // @Override
     // public void mousePressed(MouseEvent e){
-        
+
     // }
     // @Override
     // public void mouseReleased(MouseEvent e){
-        
+
     // }
     // @Override
     // public void mouseEntered(MouseEvent e){
-        
+
     // }
     // @Override
     // public void mouseExited(MouseEvent e){
-        
+
     // }
 }
