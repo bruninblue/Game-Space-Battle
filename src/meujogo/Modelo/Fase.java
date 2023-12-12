@@ -1,5 +1,8 @@
 package meujogo.Modelo;
 
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -15,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import meujogo.Container;
+
 public class Fase extends JPanel implements ActionListener{
 
     // ActionListener metodo que atualiza a tela 
@@ -25,7 +30,8 @@ public class Fase extends JPanel implements ActionListener{
     private List<Enemy1> enemy1;
     private List<Stars> stars;
     private boolean emJogo;
-    private Menu menuJogo;
+    private Container menuJogo;
+    private Musica musica = new Musica();
     
 
     public Fase(){
@@ -44,23 +50,26 @@ public class Fase extends JPanel implements ActionListener{
         timer.start();
         inicializaInimigos();
         inicializaStars();
+        playMusic(0);
+        
         emJogo = true;
+        
     }
 
     public void inicializaInimigos(){
 
-        int coordernadas [] = new int[80];
+        int coordernadas [] = new int[150];
         enemy1 = new ArrayList<Enemy1>();
 
         for(int i = 0; i<coordernadas.length; i++){
-            int x = (int) (Math.random() * 20000+1024); // a laargura da tela é 1024, ou seja, a soma é para garantir que o inimigo apareça antes da tela 
+            int x = (int) (Math.random() * 20100+1024); // a laargura da tela é 1024, ou seja, a soma é para garantir que o inimigo apareça antes da tela 
             int y = (int) (Math.random() * 630+15);// garantir que o inimigo não seja criado nem muito baixo nem muito alto, mais baixo será 30. 
             enemy1.add(new Enemy1(x,y));
         }
     }
 
     public void inicializaStars(){
-        int coordernadas[] = new int[100];
+        int coordernadas[] = new int[150];
         stars = new ArrayList<Stars>();
 
         for(int i = 0; i<coordernadas.length; i++){
@@ -101,17 +110,16 @@ public class Fase extends JPanel implements ActionListener{
             }
 
         }else{
-            //new Menu();
-            menuJogo.setVisible(true);
-            this.setVisible(false);
-            
-            // ImageIcon fimJogo = new ImageIcon("res\\fimdejogo.png");
-            // Image gameOver = fimJogo.getImage();
-            // graficos.drawImage(gameOver,-100,0, null);
+            musica.stop();
+            ImageIcon fimJogo = new ImageIcon("res\\fimdejogo.png");
+            Image gameOver = fimJogo.getImage();
+            graficos.drawImage(gameOver,-150,-20, null);
+            g.setColor(Color.white);
+            g.setFont(new Font("Arial", Font.BOLD,30));
+            g.drawString("pontuação: "+player.getScore(), 10, 25);
         }
-        
-        checarColisoes();
         g.dispose();
+        
 
     }
 
@@ -148,6 +156,7 @@ public class Fase extends JPanel implements ActionListener{
                 
             } // enquanto o inimigo estiver no cenario ela estará visivel
        }
+       checarColisoes();
        repaint(); // toda vez que houver um movitmento, haverá uma repintagem. 
     }
 
@@ -162,12 +171,14 @@ public class Fase extends JPanel implements ActionListener{
             Enemy1 tempEnemy1 = enemy1.get(i);
             formaEnemy1 = tempEnemy1.getBounds();
             if(formaNave.intersects(formaEnemy1)){
-                Sound.hit.play();
+                if(emJogo==true){
+                    Sound.hit.play();
+                }
                 player.dano();
                 tempEnemy1.setVisivel(false);
                 if(player.getLife()==0){
-                    emJogo = false;
                     player.setVisivel(false);
+                    emJogo = false; 
                 }
                 
             }
@@ -182,7 +193,9 @@ public class Fase extends JPanel implements ActionListener{
                 Enemy1 tempEnemy1 = enemy1.get(o);
                 formaEnemy1 = tempEnemy1.getBounds();
                 if(formaTiro.intersects(formaEnemy1) ){
-                    Sound.explosion.play();
+                    if(emJogo==true){
+                        Sound.explosion.play();
+                    }
                     tempEnemy1.setVisivel(false);
                     tempTiro.setVisivel(false);
                     player.ponto();
@@ -204,6 +217,81 @@ public class Fase extends JPanel implements ActionListener{
             player.keyReleased(e);
         }
         
+    }
+    
+    public void playMusic(int i){
+        
+        musica.setFile(i);
+        musica.play();
+        musica.loop();
+    }
+
+    public void stopMusic(int i){
+        musica.stop();
+    }
+
+    public Image getFundo() {
+        return fundo;
+    }
+
+    public void setFundo(Image fundo) {
+        this.fundo = fundo;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public List<Enemy1> getEnemy1() {
+        return enemy1;
+    }
+
+    public void setEnemy1(List<Enemy1> enemy1) {
+        this.enemy1 = enemy1;
+    }
+
+    public List<Stars> getStars() {
+        return stars;
+    }
+
+    public void setStars(List<Stars> stars) {
+        this.stars = stars;
+    }
+
+    public boolean isEmJogo() {
+        return emJogo;
+    }
+
+    public void setEmJogo(boolean emJogo) {
+        this.emJogo = emJogo;
+    }
+
+    public Container getMenuJogo() {
+        return menuJogo;
+    }
+
+    public void setMenuJogo(Container menuJogo) {
+        this.menuJogo = menuJogo;
+    }
+
+    public Musica getMusica() {
+        return musica;
+    }
+
+    public void setMusica(Musica musica) {
+        this.musica = musica;
     }
     
 }

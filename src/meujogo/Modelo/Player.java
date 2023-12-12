@@ -37,22 +37,22 @@ public class Player {
         imagem = referencia.getImage();
 
         altura = imagem.getHeight(null);
-        largura = imagem.getHeight(null);
+        largura = imagem.getWidth(null);
     }
 
     public void update(){ // movimentação
 
-        if( x < 861 && x>0 ){ // logica para limitar a movimentação no cenário 
+        if(x<861 && x>0 ){ // logica para limitar a movimentação no cenário 
            this.x+=dx;
-        }else if(x > 860){
-            this.x = 860;
+        }else if(x>860){
+            this.x=860;
         }else if(x<1){
-            this.x = 1;
+            this.x=1;
         }
 
-        if(y < 631 && y > 0){
-            y += dy;
-        } else if ( y < 1 ){
+        if(y<631 && y>0){
+            y+=dy;
+        }else if(y<1){
             this.y=1;
         }else if(y>630){
             this.y=630;
@@ -114,9 +114,8 @@ public class Player {
 
     }
 
-    // Rederiza score e life
     public void render(Graphics a){
-        
+
         a.setColor(Color.white);
         a.setFont(new Font("Arial", Font.BOLD,30));
         a.drawString("Score: "+score, 10, 25);
@@ -165,4 +164,73 @@ public class Player {
     public void ponto(){
         this.score = score + 100;
     }
+
+    public int getScore(){
+        return score;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getDx() {
+        return dx;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public int getDy() {
+        return dy;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
+    }
+
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getLargura() {
+        return largura;
+    }
+
+    public void setLargura(int largura) {
+        this.largura = largura;
+    }
+
+    public void setTiros(List<Tiro> tiros) {
+        this.tiros = tiros;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Image getIm() {
+        return im;
+    }
+
+    public void setIm(Image im) {
+        this.im = im;
+    }
+    
 }

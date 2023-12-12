@@ -51,31 +51,20 @@ public class Menu extends JFrame {
         revalidate();
     }
 
-    // public boolean isVisivel() {
-    // return isVisivel;
-    // }
+    public Botao getButtonInicial() {
+        return buttonInicial;
+    }
 
-    // public void setVisivel(boolean isVisivel) {
-    // this.isVisivel = isVisivel;
-    // }
-    // @Override
-    // public void mouseClicked(MouseEvent e){
-    // new Container();
-    // }
-    // @Override
-    // public void mousePressed(MouseEvent e){
+    public void setButtonInicial(Botao buttonInicial) {
+        this.buttonInicial = buttonInicial;
+    }
 
-    // }
-    // @Override
-    // public void mouseReleased(MouseEvent e){
+    public boolean isVisivel() {
+        return isVisivel;
+    }
 
-    // }
-    // @Override
-    // public void mouseEntered(MouseEvent e){
+    public void setVisivel(boolean isVisivel) {
+        this.isVisivel = isVisivel;
+    }
 
-    // }
-    // @Override
-    // public void mouseExited(MouseEvent e){
-
-    // }
 }

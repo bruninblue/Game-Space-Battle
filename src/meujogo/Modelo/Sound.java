@@ -7,7 +7,7 @@ import java.io.File;
 public class Sound {
     private AudioClip clip;
 
-    //  File f = new File("hit.wav");
+    public static final Sound inicio = new Sound("//inicio.wav");
 
     public static final Sound shoot = new Sound("//shoot.wav"); // colocar um arquivo em audio.
 
@@ -27,6 +27,19 @@ public class Sound {
             new Thread(){
                 public void run(){
                     clip.play();
+                }
+            }.start();
+        }
+        catch(Throwable e){
+
+        }
+    }
+
+    public void loop(){
+        try{
+            new Thread(){
+                public void run(){
+                    clip.loop();;
                 }
             }.start();
         }

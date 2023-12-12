@@ -70,8 +70,33 @@ public class Tiro {
     public void setVisivel(boolean isVisivel) {
         this.isVisivel = isVisivel;
     }
+
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getLargura() {
+        return largura;
+    }
+
+    public void setLargura(int largura) {
+        this.largura = largura;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
     
-
-
-
 }

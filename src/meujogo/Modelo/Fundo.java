@@ -30,6 +30,8 @@ public class Fundo extends JPanel {
         this.stretched = stretched;
     }
 
+    
+
     public Fundo() {
         super();
     }
@@ -98,6 +100,4 @@ public class Fundo extends JPanel {
             }
         }
     }
-
-
 }

@@ -50,6 +50,7 @@ public class Botao extends JButton{
     public void setStretched(boolean stretched) {
         this.stretched = stretched;
     }
+    
 
 
     public Botao() {
@@ -112,5 +113,13 @@ public class Botao extends JButton{
             AffineTransform xform = AffineTransform.getScaleInstance(scaleX, scaleY);  
             ((Graphics2D) g).drawImage(backgroundButton, xform, this); 
         }
+    }
+
+    public boolean isHover() {
+        return hover;
+    }
+
+    public void setHover(boolean hover) {
+        this.hover = hover;
     }
 }

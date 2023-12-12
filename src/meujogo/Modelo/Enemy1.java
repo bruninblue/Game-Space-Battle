@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 public class Enemy1 {
     
-   private Image imagem; // imagem do tiro 
+    private Image imagem; // imagem do tiro 
     private int x,y; // posição do tiro 
     private int largura, altura; // a dimensão do tiro 
     private boolean isVisivel; // fazer o tiro sumir 
@@ -55,9 +55,6 @@ public class Enemy1 {
     public static void setVELOCIDADE(int vELOCIDADE) {
         VELOCIDADE = vELOCIDADE;
     }
-
-   
-
     public static int getVELOCIDADE() {
         return VELOCIDADE;
     }
@@ -74,7 +71,32 @@ public class Enemy1 {
         this.isVisivel = isVisivel;
     }
 
-   
+    public void setImagem(Image imagem) {
+        this.imagem = imagem;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getLargura() {
+        return largura;
+    }
+
+    public void setLargura(int largura) {
+        this.largura = largura;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
     
- 
 }
